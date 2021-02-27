@@ -1,0 +1,888 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Apache Kafka i Java</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/simple.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="reveal">
+				<div class="slides">
+			<section id="intro-slide" class="intro">
+				<h3>Event Driven Architecture z&nbspwykorzystaniem Javy oraz Apache Kafka</h3>
+				<div class="row">
+					<div class="col-6">
+						<img class="img-fluid" style="height: 20rem;" src="assets/milord.png" alt="">
+					</div>
+					<div class="col-6">
+						<img class="img-fluid" src="assets/java_15.png" alt="">
+					</div>
+				
+			</div>
+			
+			</section>
+			<section id="initial-slide-2" class="initial-slide-2">
+				<div class="container justify-content-center">
+						<div class="row">
+								<div class="col-12">
+									<img class="item my-photo" src="assets/myphoto.png" alt="">
+								</div>
+								<div class="col-12">
+									<p class="text-align-center regular-text-2 ">Sylwester Denko</p>
+								</div>
+							
+						</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<p class="fragment regular-text-2 text-justify fade-up" data-fragment-index="1"> 
+								<strong>Jestem:</strong> Fullstackiem
+							</p>
+						</div>
+						<div class="col-12 d-flex text-justify">
+							<p class="fragment regular-text-2 fade-up" data-fragment-index="2">
+								<strong>Zainteresowania:</strong> Piłka nożna i liga angielska, trening siłowy, elektronika
+								(Raspberry Pi,
+								Arduino), od niedawna fotografowanie z użyciem drona :)
+							</p>
+						</div>
+						<div class="col-12 d-flex text-justify">
+							<p class="fragment regular-text-2 fade-up" data-fragment-index="3">
+								<strong>Technologie:</strong> Java,
+								Javascript, Spring, Webpack, Marionette.js,
+								Backbone.js, Webcomponents, Apache Kafka,
+								GraphQL, Node.js, React.js, Vue.js
+							</p>
+						</div>	
+					</div>
+				</div>
+			</section>
+
+			<section id="about-sollers" class="intro">
+					<div class="container">
+					<div class="row">
+						<img  src="assets/sollers_logo.svg" alt="">
+					</div>
+					</div>
+					<div class="container justify-content-center">
+						<div class="row">
+							<div class="fragment col-3" data-fragment-index="1">
+								<img class=""   src="assets/sollers_mapa.png" alt="" >
+								<img class=""  style="z-index: 1;" src="assets/fig.jfif" alt="" >
+								<img class="fragment overlay-items" style="z-index: 2; width: 20rem; top:25rem; left: -2rem;" src="assets/nosacz.jpg" alt="" data-fragment-index="2">
+							</div>
+							<div class="fragment col-3 d-flex align-items-center" data-fragment-index="3">
+								<div class="container">
+									<div class="row">
+										<div class="col-12">
+											<img class="icon_s" src="assets/advisory.png" alt="" >
+
+										</div>
+										<div class="col-12">
+											<p class="fs-6">600 +</p>
+										</div>
+									</div>
+								</div>
+							
+							</div>
+							<div class="fragment col-3 d-flex align-items-center" data-fragment-index="4">
+								<div class="container">
+									<div class="row">
+										<div class="col-12">
+											<img class="icon_s" src="assets/finance.png" alt="" >
+										</div>
+										<div class="col-12">
+											<p class="fs-6">doradztwo w obszarze finansowym </p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="fragment col-3 d-flex align-items-center" data-fragment-index="5">
+								<div class="container">
+									<div class="row">
+										<div class="col-12">
+											<img class="icon_s"  src="assets/people.png" alt="" >
+										</div>
+										<div class="col-12">
+											<p class="fs-6">międzynarodowe środowisko</p>
+										</div>
+									</div>
+								</div>
+							</div>
+					
+						</div>
+					</div>
+					
+			</section>
+			<!-- <section id="initial-slide" class="initial-slide">
+				<div class="container justify-center">
+					<img class="item my-photo" src="assets/myphoto.png" alt="">
+				</div>
+				<div class="container flex-direction--column">
+					<div class="item">
+						<div class="container justify-center">
+							<p class="regular-text">Sylwester Denko</p>
+						</div>
+						<p class="regular-text-2"> 
+							<strong>Stanowisko: </strong> Fullstack developer
+						</p>
+						<p class="regular-text-2">
+							<strong>Gdzie pracuje? </strong> Sollers Consulting :)
+						</p>
+						<p class="regular-text-2">
+							<strong>Zainteresowania:</strong> Piłka nożna i liga angielska, trening siłowy, elektronika
+							(Raspberry Pi,
+							Arduino), od niedawna fotografowanie z użyciem drona :)
+						</p>
+						
+					</div>
+
+					<div class="item">
+						<p class="regular-text-2">
+							<strong>Technologie:</strong> Java,
+							Javascript, Spring, Webpack, Marionette.js,
+							Backbone.js, Apache Kafka,
+							GraphQL, Node.js, React.js
+						</p>
+					</div>
+					<div class="item">
+						<p class="regular-text-2">
+							<strong>E-mail:</strong> sylwester.denko@gmail.com
+						</p>
+					</div>
+					<div class="item">
+						
+					</div>
+					<div class="item">
+						<div class="container">
+							<a class="regular-text" href="https://github.com/tzyGun/spring-kafka">
+								<img class="github-logo" src="assets/github.svg" alt="">
+								<span class="github-link">https://github.com/tzyGun/c_tech-kafka</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<aside class="notes">
+					Shhh, these are your private notes 📝
+				</aside>
+			</section> -->
+
+			<section id="event-driven-architecture">
+				<section>
+
+					<h4>Czym jest Event Driven Architecture?</h4>
+					<div class="container justify-content-center">
+						<div class="row">
+								<div class="col-12">
+									<div class="fragment" data-fragment-index="1">
+										<img class="img-fluid" src="assets/event_driven.svg" alt="">
+									</div>
+								</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h4>Kiedy?</h4>
+					<div class="container">
+						<div class="row">
+								<div class="col-6">
+									<div>
+										<img class="img-fluid" src="assets/change_mind.jpg" alt="">
+									</div>
+								</div>
+								<div class="col-6">
+									<ul>
+										<li class="fragment" data-fragment-index="1"><p class="fs-5">Duża ilość danych z różnych źródeł</p></li>
+										<li class="fragment" data-fragment-index="2"><p class="fs-5">Przetwarzanie w czasie rzeczywistym</p></li>
+										<li class="fragment" data-fragment-index="3"><p class="fs-5">Rożne podsystemy przetwarzają te same dane</p></li>
+									</ul>
+								</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h4>Korzyści</h4>
+					<div class="container">
+						<div class="row">
+								<div class="col-6">
+									<div>
+										<img class="img-fluid" src="assets/yoda.jpg" alt="">
+									</div>
+								</div>
+								<div class="col-6">
+									<ul>
+										<li class="fragment" data-fragment-index="1"><p class="fs-5">Producenci i konsumenci zdarzeń są od siebie niezależni</p></li>
+										<li class="fragment" data-fragment-index="2"><p class="fs-5">Wysoka skalowalność i rozproszenie rozwiązań</p></li>
+										<li class="fragment" data-fragment-index="3"><p class="fs-5">Dobrowolne wybieranie technologii*</p></li>
+									</ul>
+								</div>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section id="what-is-kafka">
+				<section>
+					<h4>Czym jest Kafka?</h4>
+					<div class="container flex-direction--column">
+						<div class="fragment" data-fragment-index="1">
+							<img src="assets/kafka-logo.png" alt="">
+						</div>
+						<div class="fragment" data-fragment-index="1">
+							<img style="width: 20rem;" src="assets/apache_kafka.svg" alt="">
+						</div>
+					</div>
+				</section>
+				<section id="history">
+					<h4>Historia</h4>
+					<div class="fragment" data-fragment-index="1">
+						<img style="width: 20rem;" src="assets/grucha.jpg" alt="">
+					</div>
+					<div class="container justify-center">
+						<div class="fragment" data-fragment-index="2">
+							<img style="width: 20rem; padding: 0 2rem;" src="assets/linked-in.png" alt="">
+						</div>
+						<div class="fragment" data-fragment-index="4">
+							<img style="width: 20rem; padding: 0 2rem;" src="assets/scala.png" alt="">
+						</div>
+						<div class="fragment" data-fragment-index="3">
+							<img style="width: 20rem; padding: 0 2rem;" src="assets/confluent.png" alt="">
+						</div>
+					</div>
+				</section>
+			</section>
+			<section id="who-use">
+				<h4>Kto używa kafki?</h4>
+				<div class="overlay-items" style="left:22rem" style="z-index: 0;">
+					<img src="assets/kafka-logo.png" alt="">
+				</div>
+				<div class="fragment overlay-items fade-up" style="z-index: 1;" data-fragment-index="1">
+					<img src="assets/whouse/linkedin.png" alt="">
+				</div>
+				<div class="fragment overlay-items fade-up" style="z-index: 2; left:17rem; top:10rem"
+					data-fragment-index="2">
+					<img src="assets/whouse/netflix.jpg" alt="">
+				</div>
+				<div class="fragment overlay-items" style="z-index: 3; left:19rem; top:27rem" data-fragment-index="3">
+					<img src="assets/whouse/airbnb.png" alt="">
+				</div>
+				<div class="fragment overlay-items" style="z-index: 4; left:35rem; top:5rem" data-fragment-index="4">
+					<img src="assets/whouse/paypal.jpg" alt="">
+				</div>
+				<div class="fragment overlay-items" style="z-index: 5; left:45rem; top:20rem" data-fragment-index="5">
+					<img src="assets/whouse/slack.png" alt="">
+				</div>
+				<div class="fragment overlay-items" style="z-index: 6; top:32rem" data-fragment-index="6">
+					<img src="assets/whouse/spotify.png" alt="">
+				</div>
+
+				<div class="fragment overlay-items" style="z-index: 7; top:20rem" data-fragment-index="7">
+					<img src="assets/whouse/twitter.png" alt="">
+				</div>
+				<div class="fragment overlay-items" style="z-index: 8; left: 45rem; top:30rem" data-fragment-index="8">
+					<img src="assets/whouse/uber.png" alt="">
+				</div>
+
+
+				<aside class="notes">
+					https://stackshare.io/kafka
+				</aside>
+
+			</section>
+			<section id="building-blocks">
+				<section>
+					<h4>Podstawowe elementy Kafki - Zookeeper</h4>
+					<div class="fragment">
+						<img src="assets/cluster.png" alt="">
+					</div>
+				</section>
+				<section>
+					<h4>Podstawowe elementy Kafki - Broker</h4>
+					<img src="assets/kafka_single_broker.png" alt="">
+				</section>
+				<section>
+					<h4>Podstawowe elementy Kafki - Producer</h4>
+					<img src="assets/production.gif" alt="">
+					<ul>
+						<li class="fragment">
+							<p class="regular-text">Jest nim dowolna aplikacja springowa z klientem Kafki (i nie tylko)
+							</p>
+						</li>
+						<li class="fragment">
+							<p class="regular-text">Tworzy połączenie z brokerem</p>
+						</li>
+						<li class="fragment">
+							<p class="regular-text">Wysyła dane na określony topic czy też partycje określony w brokerze
+								lub clustrze brokerów</p>
+						</li>
+					</ul>
+
+				</section>
+				<section>
+					<h4>Podstawowe elementy Kafki - Consumer</h4>
+					<img src="assets/consumer.jpg" alt="">
+					<ul>
+						<li class="fragment">
+							<p class="regular-text">Jest nim dowolna aplikacja springowa z klientem Kafki (i nie tylko)
+							</p>
+						</li>
+						
+						<li class="fragment">
+							<p class="regular-text">Tworzy połączenie z brokerem</p>
+						</li>
+						<li class="fragment">
+							<p class="regular-text">Odbiera dane z danego brokera lub clustra brokerów wysyłane na dany
+								topic</p>
+						</li>
+						<li class="fragment">
+							<p class="regular-text">Pilnuje go Zookeper (offset)</p>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h4>Podstawowe elementy Kafki - Topic</h4>
+					<img src="assets/kafka_topic.png" alt="">
+				</section>
+				<section>
+					<h4>Podstawowe elementy Kafki - Topici i partycje</h4>
+					<img src="assets/partycje.svg" alt="">
+				</section>
+				<section>
+					<h4>Retencja danych</h4>
+					<div class="container justify-center">
+						 <img style="width: 30%; "src="assets/kafka_log.png" alt="">
+						 <img style="width: 30%; padding-left: 2rem;" src="assets/apache_kafka_log.svg" alt="">
+					</div>
+					<div class="container">
+						<p class="fragment" style="padding-right: 2rem;">log.retention.hours = 168 </p>
+						<img class="fragment" style="width: 30%; "src="assets/7days.png" alt="">
+					</div>
+				</section>
+			</section>
+			
+			</section>
+			<section id="what-is-avro">
+				<section>
+					<img src="assets/avro_apache.png" alt="">
+				</section>
+				<section>
+					<h4>Wygenerowany schemat Avro</h4>
+					<pre>
+						<code class="code-font" data-trim data-noescape>
+							//WeatherForCities.avsc
+							{
+								"type": "record",
+								"name": "City",
+								"namespace": "com.spring.kafka.springkafka",
+								"fields": [
+									{
+										"name": "City",
+										"type": "string"
+									},
+									{
+										"name": "voivodeship",
+										"type": "string"
+									},
+									{
+										"name": "weatherDatas",
+										"type": {
+											"type": "array",
+											"items": {
+												"type": "record",
+												"name": "WeatherData",
+												"fields": [
+													{
+														"name": "temperature",
+														"type": "double"
+													},
+													{
+														"name": "pressure",
+														"type": "string"
+													},
+													{
+														"name": "isTornado",
+														"type": "boolean"
+													}
+												]
+											}
+										},
+										"default": []
+									}
+								]
+							}
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h4>Wygenerowana class Javowa</h4>
+					<pre>
+						<code class="code-font" data-trim data-noescape>
+							/**
+							* Autogenerated by Avro
+							*
+							* DO NOT EDIT DIRECTLY
+							*/
+						   package com.spring.kafka.springkafka;
+						   
+						   import org.apache.avro.specific.SpecificData;
+						   
+						   @SuppressWarnings("all")
+						   @org.apache.avro.specific.AvroGenerated
+						   public class City extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+							 private static final long serialVersionUID = 2083532558727406128L;
+							 public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"City\",\"namespace\":\"com.spring.kafka.springkafka\",\"fields\":[{\"name\":\"City\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"voivodeship\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"weatherDatas\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"WeatherData\",\"fields\":[{\"name\":\"temperature\",\"type\":\"double\"},{\"name\":\"pressure\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"isTornado\",\"type\":\"boolean\"}]}},\"default\":[]}]}");
+							 public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
+							 @Deprecated public java.lang.String City;
+							 @Deprecated public java.lang.String voivodeship;
+							 @Deprecated public java.util.List<com.spring.kafka.springkafka.WeatherData> weatherDatas;
+						   
+							 /**
+							  * Default constructor.  Note that this does not initialize fields
+							  * to their default values from the schema.  If that is desired then
+							  * one should use <code>newBuilder()</code>.
+							  */
+							 public City() {}
+						   
+							 /**
+							  * All-args constructor.
+							  * @param City The new value for City
+							  * @param voivodeship The new value for voivodeship
+							  * @param weatherDatas The new value for weatherDatas
+							  */
+							 public City(java.lang.String City, java.lang.String voivodeship, java.util.List<com.spring.kafka.springkafka.WeatherData> weatherDatas) {
+							   this.City = City;
+							   this.voivodeship = voivodeship;
+							   this.weatherDatas = weatherDatas;
+							 }
+						   
+							 public org.apache.avro.Schema getSchema() { return SCHEMA$; }
+							 // Used by DatumWriter.  Applications should not call.
+							 public java.lang.Object get(int field$) {
+							   switch (field$) {
+							   case 0: return City;
+							   case 1: return voivodeship;
+							   case 2: return weatherDatas;
+							   default: throw new org.apache.avro.AvroRuntimeException("Bad index");
+							   }
+							 }
+						   
+							 // Used by DatumReader.  Applications should not call.
+							 @SuppressWarnings(value="unchecked")
+							 public void put(int field$, java.lang.Object value$) {
+							   switch (field$) {
+							   case 0: City = (java.lang.String)value$; break;
+							   case 1: voivodeship = (java.lang.String)value$; break;
+							   case 2: weatherDatas = (java.util.List<com.spring.kafka.springkafka.WeatherData>)value$; break;
+							   default: throw new org.apache.avro.AvroRuntimeException("Bad index");
+							   }
+							 }
+						   
+							 /**
+							  * Gets the value of the 'City' field.
+							  * @return The value of the 'City' field.
+							  */
+							 public java.lang.String getCity() {
+							   return City;
+							 }
+						   
+							 /**
+							  * Sets the value of the 'City' field.
+							  * @param value the value to set.
+							  */
+							 public void setCity(java.lang.String value) {
+							   this.City = value;
+							 }
+						   
+							 /**
+							  * Gets the value of the 'voivodeship' field.
+							  * @return The value of the 'voivodeship' field.
+							  */
+							 public java.lang.String getVoivodeship() {
+							   return voivodeship;
+							 }
+						   
+							 /**
+							  * Sets the value of the 'voivodeship' field.
+							  * @param value the value to set.
+							  */
+							 public void setVoivodeship(java.lang.String value) {
+							   this.voivodeship = value;
+							 }
+						   
+							 /**
+							  * Gets the value of the 'weatherDatas' field.
+							  * @return The value of the 'weatherDatas' field.
+							  */
+							 public java.util.List<com.spring.kafka.springkafka.WeatherData> getWeatherDatas() {
+							   return weatherDatas;
+							 }
+						   
+							 /**
+							  * Sets the value of the 'weatherDatas' field.
+							  * @param value the value to set.
+							  */
+							 public void setWeatherDatas(java.util.List<com.spring.kafka.springkafka.WeatherData> value) {
+							   this.weatherDatas = value;
+							 }
+						   
+							 /**
+							  * Creates a new City RecordBuilder.
+							  * @return A new City RecordBuilder
+							  */
+							 public static com.spring.kafka.springkafka.City.Builder newBuilder() {
+							   return new com.spring.kafka.springkafka.City.Builder();
+							 }
+						   
+							 /**
+							  * Creates a new City RecordBuilder by copying an existing Builder.
+							  * @param other The existing builder to copy.
+							  * @return A new City RecordBuilder
+							  */
+							 public static com.spring.kafka.springkafka.City.Builder newBuilder(com.spring.kafka.springkafka.City.Builder other) {
+							   return new com.spring.kafka.springkafka.City.Builder(other);
+							 }
+						   
+							 /**
+							  * Creates a new City RecordBuilder by copying an existing City instance.
+							  * @param other The existing instance to copy.
+							  * @return A new City RecordBuilder
+							  */
+							 public static com.spring.kafka.springkafka.City.Builder newBuilder(com.spring.kafka.springkafka.City other) {
+							   return new com.spring.kafka.springkafka.City.Builder(other);
+							 }
+						   
+							 /**
+							  * RecordBuilder for City instances.
+							  */
+							 public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<City>
+							   implements org.apache.avro.data.RecordBuilder<City> {
+						   
+							   private java.lang.String City;
+							   private java.lang.String voivodeship;
+							   private java.util.List<com.spring.kafka.springkafka.WeatherData> weatherDatas;
+						   
+							   /** Creates a new Builder */
+							   private Builder() {
+								 super(SCHEMA$);
+							   }
+						   
+							   /**
+								* Creates a Builder by copying an existing Builder.
+								* @param other The existing Builder to copy.
+								*/
+							   private Builder(com.spring.kafka.springkafka.City.Builder other) {
+								 super(other);
+								 if (isValidValue(fields()[0], other.City)) {
+								   this.City = data().deepCopy(fields()[0].schema(), other.City);
+								   fieldSetFlags()[0] = true;
+								 }
+								 if (isValidValue(fields()[1], other.voivodeship)) {
+								   this.voivodeship = data().deepCopy(fields()[1].schema(), other.voivodeship);
+								   fieldSetFlags()[1] = true;
+								 }
+								 if (isValidValue(fields()[2], other.weatherDatas)) {
+								   this.weatherDatas = data().deepCopy(fields()[2].schema(), other.weatherDatas);
+								   fieldSetFlags()[2] = true;
+								 }
+							   }
+						   
+							   /**
+								* Creates a Builder by copying an existing City instance
+								* @param other The existing instance to copy.
+								*/
+							   private Builder(com.spring.kafka.springkafka.City other) {
+									   super(SCHEMA$);
+								 if (isValidValue(fields()[0], other.City)) {
+								   this.City = data().deepCopy(fields()[0].schema(), other.City);
+								   fieldSetFlags()[0] = true;
+								 }
+								 if (isValidValue(fields()[1], other.voivodeship)) {
+								   this.voivodeship = data().deepCopy(fields()[1].schema(), other.voivodeship);
+								   fieldSetFlags()[1] = true;
+								 }
+								 if (isValidValue(fields()[2], other.weatherDatas)) {
+								   this.weatherDatas = data().deepCopy(fields()[2].schema(), other.weatherDatas);
+								   fieldSetFlags()[2] = true;
+								 }
+							   }
+						   
+							   /**
+								 * Gets the value of the 'City' field.
+								 * @return The value.
+								 */
+							   public java.lang.String getCity() {
+								 return City;
+							   }
+						   
+							   /**
+								 * Sets the value of the 'City' field.
+								 * @param value The value of 'City'.
+								 * @return This builder.
+								 */
+							   public com.spring.kafka.springkafka.City.Builder setCity(java.lang.String value) {
+								 validate(fields()[0], value);
+								 this.City = value;
+								 fieldSetFlags()[0] = true;
+								 return this;
+							   }
+						   
+							   /**
+								 * Checks whether the 'City' field has been set.
+								 * @return True if the 'City' field has been set, false otherwise.
+								 */
+							   public boolean hasCity() {
+								 return fieldSetFlags()[0];
+							   }
+						   
+						   
+							   /**
+								 * Clears the value of the 'City' field.
+								 * @return This builder.
+								 */
+							   public com.spring.kafka.springkafka.City.Builder clearCity() {
+								 City = null;
+								 fieldSetFlags()[0] = false;
+								 return this;
+							   }
+						   
+							   /**
+								 * Gets the value of the 'voivodeship' field.
+								 * @return The value.
+								 */
+							   public java.lang.String getVoivodeship() {
+								 return voivodeship;
+							   }
+						   
+							   /**
+								 * Sets the value of the 'voivodeship' field.
+								 * @param value The value of 'voivodeship'.
+								 * @return This builder.
+								 */
+							   public com.spring.kafka.springkafka.City.Builder setVoivodeship(java.lang.String value) {
+								 validate(fields()[1], value);
+								 this.voivodeship = value;
+								 fieldSetFlags()[1] = true;
+								 return this;
+							   }
+						   
+							   /**
+								 * Checks whether the 'voivodeship' field has been set.
+								 * @return True if the 'voivodeship' field has been set, false otherwise.
+								 */
+							   public boolean hasVoivodeship() {
+								 return fieldSetFlags()[1];
+							   }
+						   
+						   
+							   /**
+								 * Clears the value of the 'voivodeship' field.
+								 * @return This builder.
+								 */
+							   public com.spring.kafka.springkafka.City.Builder clearVoivodeship() {
+								 voivodeship = null;
+								 fieldSetFlags()[1] = false;
+								 return this;
+							   }
+						   
+							   /**
+								 * Gets the value of the 'weatherDatas' field.
+								 * @return The value.
+								 */
+							   public java.util.List<com.spring.kafka.springkafka.WeatherData> getWeatherDatas() {
+								 return weatherDatas;
+							   }
+						   
+							   /**
+								 * Sets the value of the 'weatherDatas' field.
+								 * @param value The value of 'weatherDatas'.
+								 * @return This builder.
+								 */
+							   public com.spring.kafka.springkafka.City.Builder setWeatherDatas(java.util.List<com.spring.kafka.springkafka.WeatherData> value) {
+								 validate(fields()[2], value);
+								 this.weatherDatas = value;
+								 fieldSetFlags()[2] = true;
+								 return this;
+							   }
+						   
+							   /**
+								 * Checks whether the 'weatherDatas' field has been set.
+								 * @return True if the 'weatherDatas' field has been set, false otherwise.
+								 */
+							   public boolean hasWeatherDatas() {
+								 return fieldSetFlags()[2];
+							   }
+						   
+						   
+							   /**
+								 * Clears the value of the 'weatherDatas' field.
+								 * @return This builder.
+								 */
+							   public com.spring.kafka.springkafka.City.Builder clearWeatherDatas() {
+								 weatherDatas = null;
+								 fieldSetFlags()[2] = false;
+								 return this;
+							   }
+						   
+							   @Override
+							   public City build() {
+								 try {
+								   City record = new City();
+								   record.City = fieldSetFlags()[0] ? this.City : (java.lang.String) defaultValue(fields()[0]);
+								   record.voivodeship = fieldSetFlags()[1] ? this.voivodeship : (java.lang.String) defaultValue(fields()[1]);
+								   record.weatherDatas = fieldSetFlags()[2] ? this.weatherDatas : (java.util.List<com.spring.kafka.springkafka.WeatherData>) defaultValue(fields()[2]);
+								   return record;
+								 } catch (Exception e) {
+								   throw new org.apache.avro.AvroRuntimeException(e);
+								 }
+							   }
+							 }
+						   
+							 private static final org.apache.avro.io.DatumWriter
+							   WRITER$ = new org.apache.avro.specific.SpecificDatumWriter(SCHEMA$);
+						   
+							 @Override public void writeExternal(java.io.ObjectOutput out)
+							   throws java.io.IOException {
+							   WRITER$.write(this, SpecificData.getEncoder(out));
+							 }
+						   
+							 private static final org.apache.avro.io.DatumReader
+							   READER$ = new org.apache.avro.specific.SpecificDatumReader(SCHEMA$);
+						   
+							 @Override public void readExternal(java.io.ObjectInput in)
+							   throws java.io.IOException {
+							   READER$.read(this, SpecificData.getDecoder(in));
+							 }
+						   
+						   }
+						   
+
+						</code>
+					</pre>
+				</section>
+			</section>
+			<section id="sample">
+				<section class="">
+					<h4>Przykładowa apka</h4>
+					<img src="assets/sample_app.svg" alt="">
+				</section>
+				<section>
+					<link-component></link-component>
+				</section>
+
+			</section>
+			<section id="usefull-links">
+				<section>
+					Przydatne linki:
+					<ul class="usefull-links">
+						<li class="usefull-links-item">
+							<strong>Czym jest Kafka ?</strong>
+							<a href="https://www.cloudkarafka.com/blog/2016-11-30-part1-kafka-for-beginners-what-is-apache-kafka.html"
+								target="_blank">
+								<p class="usefull-links-text">
+									https://www.cloudkarafka.com/blog/2016-11-30-part1-kafka-for-beginners-what-is-apache-kafka.html
+								</p>
+							</a>
+						</li>
+						<li class="usefull-links-item">
+							<strong>Czym jest Zookeeper ?</strong>
+							<a href="https://www.cloudkarafka.com/blog/2018-07-04-cloudkarafka_what_is_zookeeper.html"
+								target="_blank">
+								<p class="usefull-links-text">
+									https://www.cloudkarafka.com/blog/2018-07-04-cloudkarafka_what_is_zookeeper.html
+								</p>
+							</a>
+						</li>
+						<li class="usefull-links-item">
+							<strong>Moje repo: </strong>
+							<a href="https://github.com/tzyGun/tech_3camp_training" target="_blank">
+								<p class="usefull-links-text">
+									https://github.com/tzyGun/tech_3camp_training
+								</p>
+							</a>
+						</li>
+
+						<li class="usefull-links-item">
+							<strong>Porównanie z podobnymi/innymi rozwiązaniami</strong>
+							<a href="https://medium.com/better-programming/rabbitmq-vs-kafka-1ef22a041793"
+								target="_blank">
+								<p class="usefull-links-text">
+									https://medium.com/better-programming/rabbitmq-vs-kafka-1ef22a041793
+								</p>
+							</a>
+						</li>
+
+
+					</ul>
+				</section>
+				<section>
+					<ul class="usefull-links">
+						<li class="usefull-links-item">
+							<strong>Kiedy Kafka ? Porównanie z RabbitMq cechy itd.: </strong>
+							<a href="https://www.plukasiewicz.net/Artykuly/RabbitMQvsApacheKafka"
+								target="_blank">
+								<p class="usefull-links-text">
+									https://www.plukasiewicz.net/Artykuly/RabbitMQvsApacheKafka
+								</p>
+							</a>
+						</li>
+
+						<li class="usefull-links-item">
+							<strong>Blog o Kafce w szczegółach:</strong>
+							<a href="https://jaceklaskowski.gitbooks.io/apache-kafka/" target="_blank">
+								<p class="usefull-links-text">
+									https://jaceklaskowski.gitbooks.io/apache-kafka/
+								</p>
+							</a>
+						</li>
+
+						<li class="usefull-links-item">
+							<strong>Topici i replici w szczegółach:</strong>
+							<a href="https://www.confluent.io/blog/hands-free-kafka-replication-a-lesson-in-operational-simplicity/"
+								target="_blank">
+								<p class="usefull-links-text">
+									https://www.confluent.io/blog/hands-free-kafka-replication-a-lesson-in-operational-simplicity/
+								</p>
+							</a>
+						</li>
+
+					</ul>
+
+				</section>
+
+			</section>
+			<section>
+				<h3>Dzięki za uwagę :)!</h3>
+			</section>
+
+		</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+		<script src="index.js" type="module"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
