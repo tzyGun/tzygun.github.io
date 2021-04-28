@@ -1,0 +1,62 @@
+.initial-slide,  .initial-slide-2 {
+    .my-photo {
+        width: 12rem;
+    }
+}
+
+.icon_s {
+    width: 6rem;
+    height: 6rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.justify-center {
+    justify-content: center;
+}
+.flex-direction--column {
+    flex-direction: column;
+}
+.text-justify {
+    text-align: justify;
+
+}
+
+.regular-text {
+font-size: x-large;
+line-height: 1.2rem;
+}
+
+.text-align-center {
+    text-align: center;
+}
+.regular-text-2 {
+    font-size: large;
+    line-height: 1.2rem;
+}
+
+.reveal img.github-logo {
+    margin: 0;
+    width: 2rem;
+}
+
+.reveal ul.usefull-links {
+    list-style-type: none;
+    .usefull-links-item {
+        font-size: x-large;
+    }
+    .usefull-links-text {
+        word-wrap: break-word;
+    }
+}
+
+.code-font {
+    font-size: small;
+}
+
+.overlay-items {
+    display: block;
+    position: absolute;
+}
